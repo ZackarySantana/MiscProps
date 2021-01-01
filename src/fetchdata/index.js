@@ -3,7 +3,7 @@ import React, { Suspense, cloneElement } from "react";
 let cache = {};
 let loading = {};
 
-const FetchData = (whereToFetchData) => {
+const fetchData = (whereToFetchData) => {
 	// Do Axios request to that ^
 	// return axios.get(whereToFetchData);
 	return new Promise((resolve) => {
@@ -28,7 +28,7 @@ const LoadData = (props) => {
 	} else if (whereToFetchData in loading) {
 		throw loading[whereToFetchData];
 	} else {
-		loading[whereToFetchData] = FetchData(whereToFetchData);
+		loading[whereToFetchData] = fetchData(whereToFetchData);
 		loading[whereToFetchData].then((res) => {
 			delete loading[whereToFetchData];
 			if (res instanceof String) {
@@ -50,7 +50,7 @@ const LoadData = (props) => {
 
 const DefaultDisplay = (props) => {
 	let Children = Object.keys(props).map((propName) => {
-		return <p key={propName}>{props[propName]}</p>;
+		return <p key={propName}>{propName + ': "' + props[propName] + '"'}</p>;
 	});
 	return <>{Children}</>;
 };
@@ -58,7 +58,7 @@ const DefaultDisplay = (props) => {
 export default (props) => {
 	let {
 		Display,
-		FallBack = <p>Loading...</p>,
+		Fallback = <p>Loading...</p>,
 		whereToFetchData,
 		cacheData = true,
 	} = props;
@@ -74,7 +74,7 @@ export default (props) => {
 		}
 	}
 	return (
-		<Suspense fallback={FallBack}>
+		<Suspense fallback={Fallback}>
 			<LoadData
 				Display={Display}
 				whereToFetchData={whereToFetchData}
