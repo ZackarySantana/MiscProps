@@ -1,13 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import Data from "./fetchdata";
-
-import "./index.css";
+// Components testing in main
+import TestFetchData from "./fetchdata/test";
 
 ReactDOM.render(
 	<React.StrictMode>
-		<Data />
+		<TestFetchData />
 	</React.StrictMode>,
 	document.getElementById("root")
 );
