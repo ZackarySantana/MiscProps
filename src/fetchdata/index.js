@@ -3,9 +3,9 @@ import React, { Suspense, cloneElement } from "react";
 let cache = {};
 let loading = {};
 
-const fetchData = (whereToFetchData) => {
+const fetchData = (whereToFetch) => {
 	// Do Axios request to that ^
-	// return axios.get(whereToFetchData);
+	// return axios.get(whereToFetch);
 	return new Promise((resolve) => {
 		setTimeout(() => {
 			resolve({
@@ -18,33 +18,36 @@ const fetchData = (whereToFetchData) => {
 };
 
 const LoadData = (props) => {
-	const { whereToFetchData, cacheData, Display } = props;
-	if (whereToFetchData in cache) {
+	const { whereToFetch, cacheData, Display, ...otherProps } = props;
+	if (whereToFetch in cache) {
 		if (React.isValidElement(Display)) {
-			return cloneElement(Display, ...cache[whereToFetchData]);
+			return cloneElement(Display, {
+				...cache[whereToFetch],
+				...otherProps,
+			});
 		} else {
-			return <Display {...cache[whereToFetchData]} />;
+			return <Display {...cache[whereToFetch]} {...otherProps} />;
 		}
-	} else if (whereToFetchData in loading) {
-		throw loading[whereToFetchData];
+	} else if (whereToFetch in loading) {
+		throw loading[whereToFetch];
 	} else {
-		loading[whereToFetchData] = fetchData(whereToFetchData);
-		loading[whereToFetchData].then((res) => {
-			delete loading[whereToFetchData];
+		loading[whereToFetch] = fetchData(whereToFetch);
+		loading[whereToFetch].then((res) => {
+			delete loading[whereToFetch];
 			if (res instanceof String) {
-				cache[whereToFetchData] = JSON.parse(res);
+				cache[whereToFetch] = JSON.parse(res);
 			} else {
-				cache[whereToFetchData] = res;
+				cache[whereToFetch] = res;
 			}
 		});
 		if (!cacheData) {
-			loading[whereToFetchData].then(() => {
+			loading[whereToFetch].then(() => {
 				setTimeout(() => {
-					delete cache[whereToFetchData];
+					delete cache[whereToFetch];
 				}, 100);
 			});
 		}
-		throw loading[whereToFetchData];
+		throw loading[whereToFetch];
 	}
 };
 
@@ -59,26 +62,34 @@ export default (props) => {
 	let {
 		Display,
 		Fallback = <p>Loading...</p>,
-		whereToFetchData,
+		whereToFetch,
 		cacheData = true,
+		children,
+		...otherProps
 	} = props;
-	if (Display === undefined) {
-		if (props.children === undefined) {
-			Display = (data) => {
-				return <DefaultDisplay {...data} />;
-			};
-		} else {
-			Display = (data) => {
-				return <>{cloneElement(props.children, data)}</>;
-			};
-		}
+	if (Display === undefined && props.children === undefined) {
+		Display = (data) => {
+			return <DefaultDisplay {...data} />;
+		};
+	} else if (props.children !== undefined) {
+		Display = (data) => {
+			return (
+				<>
+					{cloneElement(props.children, {
+						...data,
+						...otherProps,
+					})}
+				</>
+			);
+		};
 	}
 	return (
 		<Suspense fallback={Fallback}>
 			<LoadData
 				Display={Display}
-				whereToFetchData={whereToFetchData}
+				whereToFetch={whereToFetch}
 				cacheData={cacheData}
+				{...otherProps}
 			/>
 		</Suspense>
 	);

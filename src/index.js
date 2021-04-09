@@ -13,7 +13,7 @@ import {
 
 ReactDOM.render(
 	<React.StrictMode>
-		<WithDefaultComponent />
+		<WithChildren test="test" />
 	</React.StrictMode>,
 	document.getElementById("root")
 );
