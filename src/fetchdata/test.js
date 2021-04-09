@@ -16,7 +16,7 @@ export const WithProps = (props) => {
 };
 
 // This implementation is using the children of data and functions the same one as the top
-// This is useful when you want to pass other props to the display component
+// This is useful when you want to pass other props to the display component or have multiple children
 export const WithChildren = (props) => {
 	return (
 		<Data whereToFetch="Bloop">
