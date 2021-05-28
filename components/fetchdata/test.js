@@ -1,5 +1,4 @@
 import React from "react";
-
 import Data from "./FetchData";
 
 // This is just a dummy component that can be replaced with any component
@@ -9,47 +8,75 @@ const Display = (props) => {
   return <h1>Hey!</h1>;
 };
 
-// This implementation is showing off the Display component (which recieves the data from the API call as the props) being in the props of Data
-// This is useful for one liners that just want to pass the data to another nested component
-export const WithProps = (props) => {
-  return <Data Display={Display} whereToFetch="Bloop" {...props} />;
-};
-
-// This implementation is using the children of data and functions the same one as the top
-// This is useful when you want to pass other props to the display component or have multiple children
-export const WithChildren = (props) => {
-  return (
-    <Data
-      whereToFetch="https://localhost:3000/books"
-      Fallback={<Display data={{ author: "temp", title: "Title" }}></Display>}
-    >
-      <Display dummyProp={"this is a dummy prop!"} {...props} />
-    </Data>
-  );
-};
-
-// This implementation simply creates a <p> tag for every key:value recieved from the call
-// This is extremely useful when you just want to view the data this prop is getting without making a dummy component yourself
-export const WithDefaultComponent = (props) => {
-  return <Data whereToFetch="Bloop" {...props} />;
-};
-
-// This is an example of a custom fallback while the API is doing its request
-// You can pass any component inside, even a minature game!
-export const WithFallback = (props) => {
+// What this does:
+// - Requests data from "https://randomuser.me/api"
+// - Once response is recieved, the component "Display" is rendered with data in the props
+// Useful features:
+// - Passes props in to Display once it is rendered
+// - Uses default fallback while it waits for response
+export const InLineComponent = (props) => {
   return (
     <Data
       Display={Display}
-      Fallback={<h1>Custom Fallback!</h1>}
-      whereToFetch="Bloop"
+      whereToFetch="https://randomuser.me/api"
       {...props}
     />
   );
 };
 
-// This is an example that retrieve's the data but then removes it from the cache 100ms later
-// This implementation removes it slightly later because it still needs to retrieve it for the first render
-// But after that, another rerender will re-fetch the data
+// What this does:
+// - Requests data from "https://randomuser.me/api"
+// - Once response is recieved, the child component "Display" is rendered with data in the props
+// Useful features:
+// - Multiple children compatibility
+// - Easier to read
+export const ChildComponent = (props) => {
+  return (
+    <Data whereToFetch="https://randomuser.me/api">
+      <Display dummyProp={"this is a dummy prop!"} {...props} />
+    </Data>
+  );
+};
+
+// What this does:
+// - Requests data from "https://randomuser.me/api"
+// - Uses a default component, that just dumps all the data recieved in to some text on screen
+// Useful features:
+// - Quickly display data from an api
+export const DefaultComponent = (props) => {
+  return <Data whereToFetch="https://randomuser.me/api" {...props} />;
+};
+
+// What this does:
+// - Requests data from "https://randomuser.me/api"
+// - Once data is recieved, puts it in the props of "Display"
+// - While data is being fetched, Fallback is rendered
+// Useful features:
+// - "props" are automatically put in to Display (last line in Data)
+// - Useful for pagination (dummy data can be used or blurry blobs)
+export const CustomFallback = (props) => {
+  return (
+    <Data
+      Display={Display}
+      Fallback={<h1>Custom Fallback!</h1>}
+      whereToFetch="https://randomuser.me/api"
+      {...props}
+    />
+  );
+};
+// A useful use for the custom fallback is pagination:
+// Fallback={<Display data={{ name: "Test" } /* Dummy data */}></Display>}
+// Is a quick example of what could be used above
+
+// What it does:
+// - Same as above examples
+// - Doesn't cache the data, without including this, FetchData automatically caches the data
 export const WithNoCache = () => {
-  return <Data Display={Display} cacheData={false} whereToFetch="Bloop" />;
+  return (
+    <Data
+      Display={Display}
+      cacheData={false}
+      whereToFetch="https://randomuser.me/api"
+    />
+  );
 };
