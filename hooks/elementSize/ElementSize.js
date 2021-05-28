@@ -3,6 +3,7 @@ import { useLayoutEffect, useState, useRef } from "react";
 // What it does:
 // - Checks for the size changing when the browser is resized
 // - The size must change for the component to rerender
+// - Using the arguments increase render performance and avoid useless rerenders
 // What are the arguments:
 // - ref = A (required) reference to the object that we want to use the size of (React's ref object)
 // - updateOnWidths = An (optional) array to only update the component at specific widths
