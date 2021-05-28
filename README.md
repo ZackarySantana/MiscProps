@@ -6,11 +6,45 @@ This repository is a collection of useful react tools that I've made throughout 
 
 ## [FetchData](components/fetchdata)
 
+This component provides an easy way to provide fallback (pagination) and data fetching to your react project.
+
+```JSX
+// Where Page is a component
+// https://randomuser.me/api is the data to fetch
+<Data
+  Display={Page}
+  Fallback={<h1>Custom Fallback!</h1>}
+  whereToFetch="https://randomuser.me/api"
+  dummyProp={"testing!"}
+  objTest={{firstOne: 1, secondOne: 2}}
+/>
+// For the example, https://randomuser.me/api" returns an object like so: {firstName: "Zack", lastName: "Santana"}
+```
+
+While the component loads, the "Fallback" will render.
+Upon loading, "Page" will render **with** the following prop structure:
+
+```JSON
+{
+    data: {
+        firstName: "Zack",
+        lastName: "Santana"
+    },
+    dummyProp: "testing!",
+    objTest: {
+        firstOne: 1,
+        secondOne: 2
+    }
+}
+```
+
 # Current Hooks:
 
 ## [useElementSize](hooks/elementSize)
 
 ## [useWindowSize](hooks/windowSize)
+
+# Repo-specific information
 
 ## Motivation
 
