@@ -71,12 +71,13 @@ export const CustomFallback = (props) => {
 // What it does:
 // - Same as above examples
 // - Doesn't cache the data, without including this, FetchData automatically caches the data
-export const WithNoCache = () => {
+export const WithNoCache = (props) => {
   return (
     <Data
       Display={Display}
       cacheData={false}
       whereToFetch="https://randomuser.me/api"
+      {...props}
     />
   );
 };
