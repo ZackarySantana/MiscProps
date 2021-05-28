@@ -2,7 +2,7 @@
 
 This repository is a collection of useful react tools that I've made throughout building my projects.
 
-# Current Components:
+# Components:
 
 ## [FetchData](components/fetchdata)
 
@@ -44,7 +44,7 @@ Upon loading, "Page" will render **with** the following prop structure:
 
 </details>
 
-# Current Hooks:
+# Hooks:
 
 ## [useElementSize](hooks/elementSize)
 
