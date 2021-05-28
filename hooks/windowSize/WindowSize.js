@@ -1,6 +1,6 @@
 import { useLayoutEffect, useCallback, useState, useRef, useMemo } from "react";
 
-export function useWindowSize(updateOnWidths, updateOnHeights) {
+export default function useWindowSize(updateOnWidths, updateOnHeights) {
   const [size, setSize] = useState([window.innerWidth, window.innerHeight]);
   const oldSize = useRef(size);
   const alwaysUpdate = useMemo(
