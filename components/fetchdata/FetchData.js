@@ -67,12 +67,36 @@ const LoadData = (props) => {
   }
 };
 
+// A method to map an object to a bunch of <p> and <div> tags
+const MapObject = (obj, spaces = "") => {
+  // Maps all the items in the object
+  return Object.keys(obj).map((ele) => {
+    // If it is an object, map it again (with header)
+    if (typeof obj[ele] === "object" && obj[ele] !== null) {
+      return (
+        <div>
+          <p key={ele} style={{ whiteSpace: "pre-wrap" }}>
+            {spaces + ele + ': "' + obj[ele] + '"'}
+          </p>
+          {MapObject(obj[ele], spaces + "    ")}
+        </div>
+      );
+
+      // If it is not an object, just a <p>
+    } else {
+      return (
+        <p key={ele} style={{ whiteSpace: "pre-wrap" }}>
+          {spaces + ele + ': "' + obj[ele] + '"'}
+        </p>
+      );
+    }
+  });
+};
+
 // A default component to display the data, used if none is provided
 const DefaultDisplay = (props) => {
   // Maps all the data to a paragraph tag
-  let Children = Object.keys(props).map((propName) => {
-    return <p key={propName}>{propName + ': "' + props[propName] + '"'}</p>;
-  });
+  let Children = MapObject(props);
 
   // Returns the default component
   return <>{Children}</>;
