@@ -8,9 +8,9 @@ This repository is a collection of useful react tools that I've made throughout 
 
 # Current Hooks:
 
-## useElementSize
+## [useElementSize](hooks/elementSize)
 
-## use WindowSize
+## [useWindowSize](hooks/windowSize)
 
 ## Motivation
 
