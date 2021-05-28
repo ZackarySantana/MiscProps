@@ -1,8 +1,7 @@
 import React from "react";
 import Data from "./FetchData";
 
-// This is just a dummy component that can be replaced with any component
-// The props is the data from the call
+// A dummy prop to log all the props, helps to understand the structure of the data!
 const Display = (props) => {
   console.log(props);
   return <h1>Hey!</h1>;
