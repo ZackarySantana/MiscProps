@@ -76,7 +76,7 @@ export default (props) => {
 			return (
 				<>
 					{cloneElement(props.children, {
-						...data,
+						data,
 						...otherProps,
 					})}
 				</>
