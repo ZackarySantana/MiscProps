@@ -6,15 +6,7 @@ let loading = {};
 const fetchData = (whereToFetch) => {
   // Do Axios request to that ^
   // return axios.get(whereToFetch);
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({
-        title: "Title of post",
-        author: "Author of post",
-        content: "content of post",
-      });
-    }, 5000);
-  });
+  return fetch(whereToFetch).then((response) => response.json());
 };
 
 const LoadData = (props) => {
