@@ -27,7 +27,8 @@ const LoadData = (props) => {
       });
     } else {
       // This assumes Display is a valid Component rather than Element
-      return <Display {...cache[whereToFetch]} {...otherProps} />;
+      let data = { data: { ...cache[whereToFetch] } };
+      return <Display {...data} {...otherProps} />;
     }
 
     // Tests if the data is still loading
@@ -39,6 +40,7 @@ const LoadData = (props) => {
     loading[whereToFetch] = fetchData(whereToFetch); // Adds the promise to the loading array
 
     // Runs the cache script/parsing script when the loading is finished
+    console.log(whereToFetch);
     loading[whereToFetch].then((res) => {
       delete loading[whereToFetch]; // Removes it from loading
 
