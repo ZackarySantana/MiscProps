@@ -48,7 +48,55 @@ Upon loading, "Page" will render **with** the following prop structure:
 
 ## [useElementSize](hooks/elementSize)
 
+Allows a component to access an element's width and height and dynamically render based on them. You can also specify specific widths/heights to render on.
+
+<details>
+  <summary>Example</summary>
+
+```JSX
+export function DisplayDimensions() {
+  const ref = useRef(); // Creates the ref to use on the <h1>
+  const [width, height] = useElementSize(ref, [800], [20, 30]); // Calls hook, which returns array of [width, height]
+
+  return (
+    <div>
+      <h1 ref={ref}>Header</h1>
+      <p>Width of header: {width}</p>
+      <p>Height of header: {height}</p>
+    </div>
+  );
+}
+```
+
+The page will render a header and two paragraph tags that display the width and the height of the header.
+The paragraph tags (the component) will update only when the width of the header goes to (or passes) 800 or the height of the header goes to (or passes) 20 or 30.
+
+</details>
+
 ## [useWindowSize](hooks/windowSize)
+
+Allows a component to access the window's width and height and dynamically render based on them. You can also specify specific widths/heights to render on.
+
+<details>
+  <summary>Example</summary>
+
+```JSX
+export function DisplayDimensions() {
+  const [width, height] = useWindowSize([800], [20, 30]); // Calls hook, which returns array of [width, height]
+
+  return (
+    <div>
+      <p>Width of header: {width}</p>
+      <p>Height of header: {height}</p>
+    </div>
+  );
+}
+```
+
+The page will render two paragraph tags, that display the width and height of the window (page).
+The paragraph tags (the component) will update only when the width of the window goes to (or passes) 800 or the height of the window goes to (or passes) 20 or 30.
+
+</details>
 
 # Repo-specific information
 
