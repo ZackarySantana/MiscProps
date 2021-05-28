@@ -18,13 +18,14 @@ This component provides an easy way to provide fallback (pagination) and data fe
   dummyProp={"testing!"}
   objTest={{firstOne: 1, secondOne: 2}}
 />
-// For the example, https://randomuser.me/api" returns an object like so: {firstName: "Zack", lastName: "Santana"}
+// For the example, https://randomuser.me/api" returns the object:
+// {firstName: "Zack", lastName: "Santana"}
 ```
 
 While the component loads, the "Fallback" will render.
 Upon loading, "Page" will render **with** the following prop structure:
 
-```JSON
+```javascript
 {
     data: {
         firstName: "Zack",
