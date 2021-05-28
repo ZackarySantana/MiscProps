@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import useElementSize from "./ElementSize";
+import useElementSize from "./useElementSize";
 
 // What it does:
 // - A component that displays the width and height of an <h1>

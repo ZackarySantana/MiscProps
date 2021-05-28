@@ -1,5 +1,5 @@
 import React from "react";
-import useWindowSize from "./WindowSize";
+import useWindowSize from "./useWindowSize";
 
 // What it does:
 // - A component that displays the width and height of the window
