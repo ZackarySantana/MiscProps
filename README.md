@@ -11,15 +11,17 @@ This component provides an easy way to provide fallback (pagination) and data fe
 <details>
   <summary>Example</summary>
 
+    Test
+
     ```JSX
     // Where Page is a component
     // https://randomuser.me/api is the data to fetch
     <Data
-    Display={Page}
-    Fallback={<h1>Custom Fallback!</h1>}
-    whereToFetch="https://randomuser.me/api"
-    dummyProp={"testing!"}
-    objTest={{firstOne: 1, secondOne: 2}}
+        Display={Page}
+        Fallback={<h1>Custom Fallback!</h1>}
+        whereToFetch="https://randomuser.me/api"
+        dummyProp={"testing!"}
+        objTest={{firstOne: 1, secondOne: 2}}
     />
     // For the example, https://randomuser.me/api" returns the object:
     // {firstName: "Zack", lastName: "Santana"}
