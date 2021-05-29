@@ -1,5 +1,5 @@
 import React from "react";
-import { useEvent } from "./events";
+import { useEvent } from "./onEvent";
 
 // A sample component that registers a listener, and dispatches an event on click
 export default function Example() {
