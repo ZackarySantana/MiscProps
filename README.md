@@ -100,7 +100,7 @@ The page will render two paragraph tags, that display the width and height of th
 
 ## [useEvent](hooks/event)
 
-A short hook that allows for event listening and event dispatching
+A short hook that allows for event listening and event dispatching.
 
 <details>
   <summary>Example</summary>
