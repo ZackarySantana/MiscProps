@@ -10,11 +10,12 @@ export function useEvent(eventType = "none", listener = "none") {
   // To register the listener
   useEffect(() => {
     if (eventType !== "none" && listener !== "none") {
-      /*let wrappedCallback = (event) => {
+      // Wraps to exclude other random information
+      let wrappedCallback = (event) => {
         listener(event.detail);
-      };*/
-      document.addEventListener(eventType, listener);
-      return () => document.removeEventListener(eventType, listener);
+      };
+      document.addEventListener(eventType, wrappedCallback);
+      return () => document.removeEventListener(eventType, wrappedCallback);
     }
   }, [eventType, listener]);
 
