@@ -94,7 +94,36 @@ export function DisplayDimensions() {
 ```
 
 The page will render two paragraph tags, that display the width and height of the window (page).
-The paragraph tags (the component) will update only when the width of the window goes to (or passes) 800 or the height of the window goes to (or passes) 20 or 30.
+<b>The paragraph tags (the component) will update only when the width of the window goes to (or passes) 800 or the height of the window goes to (or passes) 20 or 30.</b>
+
+</details>
+
+## [useEvent](hooks/event)
+
+A short hook that allows for event listening and event dispatching
+
+<details>
+  <summary>Example</summary>
+
+```JSX
+// A sample component that registers a listener, and dispatches an event on click
+export function EventAndDispatch() {
+  // Registering an event listener to the event "custombutton:click"
+  const customButtonClick = useEvent("custombutton:click", (event) => {
+    console.log(event); // Log the event object
+  });
+
+  // The button dispatches a custombutton:click
+  return (
+    <div>
+      <p>Heyyy</p>
+      <button onClick={customButtonClick({ type: "A test" })}>Click me!</button>
+    </div>
+  );
+}
+```
+
+Clicking the button will log the event!
 
 </details>
 
