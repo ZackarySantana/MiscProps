@@ -1,4 +1,11 @@
 /*
+Requirements:
+- replace-in-file
+- postcss
+- cssnano
+- autoprefixer
+npm i replace-in-file postcss cssnano autoprefixer --save-dev
+
 Usage:
 - node minify-css.js minify
   - Changes references to .min.css
@@ -6,6 +13,12 @@ Usage:
 - node minify-css.js clean
   - Changes references to .css
   - Removes .min.css files
+
+For Remix.js projects, adding to the package.json scripts:
+"scripts": {
+  "dev": "node minify-css.js clean && remix dev",
+  "start": "node minify-css.js minify && remix build && remix-serve build",
+},
 */
 
 const pathToCode = "app/**";
