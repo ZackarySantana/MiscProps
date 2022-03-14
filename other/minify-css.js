@@ -8,6 +8,9 @@ Usage:
   - Removes .min.css files
 */
 
+const pathToCode = "app/**";
+const pathToCSS = "app/styles";
+
 const fs = require("fs");
 const replace = require("replace-in-file");
 const { resolve } = require("path");
@@ -109,15 +112,15 @@ const run = async () => {
   }
   if (process.argv[2] === "minify") {
     console.log("Updating references");
-    changeReferencesToMin("app/**");
+    changeReferencesToMin(pathToCode); // Path to js/tsx
     console.log("Finished updating references.\n\nMinifying files");
-    await minifyFiles("app/styles");
+    await minifyFiles(pathToCSS); // Path to css
     console.log("Finished minifying.");
   } else if (process.argv[2] === "clean") {
     console.log("Updating references.");
-    changeReferencesToCSS("app/**");
+    changeReferencesToCSS(pathToCode);
     console.log("Finished updating references.\n\nCleaning minified files");
-    await cleanMinifiedFiles("app/styles");
+    await cleanMinifiedFiles(pathToCSS); // Path to css
     console.log("Finished cleaning minified files.");
   } else {
     console.log("[CSS Minify] Unrecongized option.");
