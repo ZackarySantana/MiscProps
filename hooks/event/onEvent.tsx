@@ -6,7 +6,7 @@ import { useEffect } from "react";
 // Features:
 // - Memoizing the listener is a performance enhancer!
 // - You can just put in the "eventType" for a dispatcher
-export function useEvent(eventType: string, listener?: (event: Event) => void) {
+export function useEvent(eventType: string, listener?: (data: any) => void) {
   // To register the listener
   useEffect(() => {
     if (listener == null) {
