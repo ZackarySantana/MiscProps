@@ -3,6 +3,12 @@
 This repository is a collection of useful react tools that I've made throughout building my projects.
 It also includes useful Remix.js specific hoots and pre-scripts that do stuff like minifying css
 
+# Table of contents
+
+- [Components](#components)
+- [Hooks](#hooks)
+- [Pre-Scripts](#pre-scripts)
+
 # Components:
 
 ## [FetchData](components/fetchdata)
