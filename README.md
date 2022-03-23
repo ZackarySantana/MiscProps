@@ -1,6 +1,7 @@
 # MiscProps
 
 This repository is a collection of useful react tools that I've made throughout building my projects.
+It also includes useful Remix.js specific hoots and pre-scripts that do stuff like minifying css
 
 # Components:
 
@@ -126,6 +127,29 @@ export function EventAndDispatch() {
 Clicking the button will log the event!
 
 </details>
+
+# Pre-Scripts
+
+## [MinifyCSS](pre-scripts/minify-css.js)
+
+Minifies/cleans all files in target directory. The default target directory is "app/**" for the .js/.jsx/.tsx files and "app/styles" for the css files. This can be changed inside the file.
+
+The file has two commands:
+- node minify-css.js clean
+  - Changes all references from ".min.css" to ".css"
+  - Deletes all minified css files (if any exists)
+- node minify-css.js minify
+  - Changes all references from ".css" to ".min.css" (if it is already .min.css, it does not change it)
+  - Creates all minified css files (overwriting if any exist)
+
+You can add it to your package.json scripts, example shown:
+
+```json
+"start": "node minify-css.js minify && node ./start-file.js",
+"dev": "node minify-css.js clean && node ./start-file.js"
+```
+
+Note that once you run `node minify-css.js minify` the files will NOT get the updated css files. This is meant for a production build.
 
 # Repo-specific information
 
