@@ -155,6 +155,68 @@ Clicking the button will log the event!
 
 </details>
 
+## [useForceUpdate](hooks/forceUpdate)
+
+Returns a function that will force the component to rerender. The main purpose for this is when data changes outside of state.
+
+<details>
+  <summary>Example</summary>
+
+```JSX
+export function APIUser() {
+    const location = useLocation();
+    const forceUpdate = useForceUpdate();
+
+    useEffect(() => {
+        forceUpdate();
+    }, [forceUpdate, location]);
+
+    return (
+        <div>
+            <p>Current Location: {location}</p>
+        </div>
+    );
+}
+```
+
+In this example, the location variable might change and not cause a rerender of the component
+
+</details>
+
+## [useIsOverflow](hooks/overflow)
+
+Monitors if a ref is overflowing from its parent
+
+<details>
+  <summary>Example</summary>
+
+```JSX
+export function APIUser() {
+    const ref = createRef<HTMLDivElement>();
+    const fetcher = useFetcher();
+
+    useIsOverflow(
+        ref,
+        (of) => {
+            if (of) {
+                ref.current?.parentElement.classList.add("w-[500px]");
+            }
+        },
+        40
+    );
+
+    return (
+        <div className="w-[5px]">
+            <div ref={ref}>Hey I might be a bunch of text or something!</div>
+        </div>
+    );
+}
+```
+
+The code above will test if the div with text overflows outside its parent. It does so it adds a new class to the parent in the callback. It also specifies that the overflow has to be 40% more (i.e. if the child has 40% or less that is overflowing).
+
+</details>
+
 # Pre-Scripts
 
 ## [MinifyCSS](pre-scripts/minify-css.js)
