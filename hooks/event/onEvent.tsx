@@ -7,18 +7,18 @@ import { useEffect } from "react";
 // - Memoizing the listener is a performance enhancer!
 // - You can just put in the "eventType" for a dispatcher
 export function useEvent(eventType: string, listener?: (data: any) => void) {
-  // To register the listener
-  useEffect(() => {
-    if (listener == null) {
-      return;
-    }
-    document.addEventListener(eventType, listener);
-    return () => document.removeEventListener(eventType, listener);
-  }, [eventType, listener]);
+    // To register the listener
+    useEffect(() => {
+        if (listener == null) {
+            return;
+        }
+        document.addEventListener(eventType, listener);
+        return () => document.removeEventListener(eventType, listener);
+    }, [eventType, listener]);
 
-  // Returns a function that returns a function
-  // This means it automatically wraps it for the end user
-  return (data: any) => {
-    return () => document.dispatchEvent(new CustomEvent(eventType, { detail: data }));
-  };
+    // Returns a function that returns a function
+    // This means it automatically wraps it for the end user
+    return (data: any) => {
+        return () => document.dispatchEvent(new CustomEvent(eventType, { detail: data }));
+    };
 }

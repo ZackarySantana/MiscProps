@@ -3,8 +3,8 @@ import Data from "./FetchData";
 
 // A dummy prop to log all the props, helps to understand the structure of the data!
 const Display = (props) => {
-  console.log(props);
-  return <h1>Hey!</h1>;
+    console.log(props);
+    return <h1>Hey!</h1>;
 };
 
 // What this does:
@@ -14,13 +14,13 @@ const Display = (props) => {
 // - Passes props in to Display once it is rendered
 // - Uses default fallback while it waits for response
 export const InLineComponent = (props) => {
-  return (
-    <Data
-      Display={Display}
-      whereToFetch="https://randomuser.me/api"
-      {...props}
-    />
-  );
+    return (
+        <Data
+            Display={Display}
+            whereToFetch="https://randomuser.me/api"
+            {...props}
+        />
+    );
 };
 
 // What this does:
@@ -30,11 +30,11 @@ export const InLineComponent = (props) => {
 // - Multiple children compatibility
 // - Easier to read
 export const ChildComponent = (props) => {
-  return (
-    <Data whereToFetch="https://randomuser.me/api">
-      <Display dummyProp={"this is a dummy prop!"} {...props} />
-    </Data>
-  );
+    return (
+        <Data whereToFetch="https://randomuser.me/api">
+            <Display dummyProp={"this is a dummy prop!"} {...props} />
+        </Data>
+    );
 };
 
 // What this does:
@@ -43,7 +43,7 @@ export const ChildComponent = (props) => {
 // Useful features:
 // - Quickly display data from an api
 export const DefaultComponent = (props) => {
-  return <Data whereToFetch="https://randomuser.me/api" {...props} />;
+    return <Data whereToFetch="https://randomuser.me/api" {...props} />;
 };
 
 // What this does:
@@ -54,14 +54,14 @@ export const DefaultComponent = (props) => {
 // - "props" are automatically put in to Display (last line in Data)
 // - Useful for pagination (dummy data can be used or blurry blobs)
 export const CustomFallback = (props) => {
-  return (
-    <Data
-      Display={Display}
-      Fallback={<h1>Custom Fallback!</h1>}
-      whereToFetch="https://randomuser.me/api"
-      {...props}
-    />
-  );
+    return (
+        <Data
+            Display={Display}
+            Fallback={<h1>Custom Fallback!</h1>}
+            whereToFetch="https://randomuser.me/api"
+            {...props}
+        />
+    );
 };
 // A useful use for the custom fallback is pagination:
 // Fallback={<Display data={{ name: "Test" } /* Dummy data */}></Display>}
@@ -71,12 +71,12 @@ export const CustomFallback = (props) => {
 // - Same as above examples
 // - Doesn't cache the data, without including this, FetchData automatically caches the data
 export const WithNoCache = (props) => {
-  return (
-    <Data
-      Display={Display}
-      cacheData={false}
-      whereToFetch="https://randomuser.me/api"
-      {...props}
-    />
-  );
+    return (
+        <Data
+            Display={Display}
+            cacheData={false}
+            whereToFetch="https://randomuser.me/api"
+            {...props}
+        />
+    );
 };
