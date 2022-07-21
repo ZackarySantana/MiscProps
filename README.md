@@ -239,7 +239,19 @@ You can add it to your package.json scripts, example shown:
 "dev": "node minify-css.js clean && node ./start-file.js"
 ```
 
+or:
+
+```json
+"minify": "node minify-css.js",
+"css:clean": "npm run minify -- clean",
+"css:minify": "npm run minify -- minify"
+```
+
 Note that once you run `node minify-css.js minify` the files will NOT get the updated css files. This is meant for a production build.
+
+## [Generate ENV](pre-scripts/generate-env.js)
+
+Generates the ENV specified in the code. Is a simple way to help automate init scripts.
 
 # Repo-specific information
 
