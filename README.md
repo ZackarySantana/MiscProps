@@ -5,9 +5,9 @@ It also includes useful Remix.js specific hoots and pre-scripts that do stuff li
 
 # Table of contents
 
-- [Components](#components)
-- [Hooks](#hooks)
-- [Pre-Scripts](#pre-scripts)
+-   [Components](#components)
+-   [Hooks](#hooks)
+-   [Pre-Scripts](#pre-scripts)
 
 # Components:
 
@@ -47,6 +47,27 @@ Upon loading, "Page" will render **with** the following prop structure:
         secondOne: 2
     }
 }
+```
+
+</details>
+
+## [Image](components/image)
+
+This component allows you to use a potentially unsupported image type and supply a fallback image with a different type
+
+<details>
+  <summary>Example</summary>
+
+```JSX
+// Where img is a string pointing to the potentially unsupported image
+// and imgAlt is the fallback image
+<Image
+    src={img}
+    srcAlt={imgAlt}
+    alt={"Showing an example of the Image Component!"}
+    className="cool red"
+    id="#cool-image"
+    loading="lazy" />
 ```
 
 </details>
@@ -138,15 +159,16 @@ Clicking the button will log the event!
 
 ## [MinifyCSS](pre-scripts/minify-css.js)
 
-Minifies/cleans all files in target directory. The default target directory is "app/**" for the .js/.jsx/.tsx files and "app/styles" for the css files. This can be changed inside the file.
+Minifies/cleans all files in target directory. The default target directory is "app/\*\*" for the .js/.jsx/.tsx files and "app/styles" for the css files. This can be changed inside the file.
 
 The file has two commands:
-- node minify-css.js clean
-  - Changes all references from ".min.css" to ".css"
-  - Deletes all minified css files (if any exists)
-- node minify-css.js minify
-  - Changes all references from ".css" to ".min.css" (if it is already .min.css, it does not change it)
-  - Creates all minified css files (overwriting if any exist)
+
+-   node minify-css.js clean
+    -   Changes all references from ".min.css" to ".css"
+    -   Deletes all minified css files (if any exists)
+-   node minify-css.js minify
+    -   Changes all references from ".css" to ".min.css" (if it is already .min.css, it does not change it)
+    -   Creates all minified css files (overwriting if any exist)
 
 You can add it to your package.json scripts, example shown:
 
