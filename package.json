@@ -1,0 +1,24 @@
+{
+  "name": "miscprops",
+  "version": "1.0.0",
+  "description": "This repository is a collection of useful react tools that I've made throughout building my projects. It also includes useful Remix.js specific hoots and pre-scripts that do stuff like minifying css",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZackarySantana/MiscProps.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ZackarySantana/MiscProps/issues"
+  },
+  "homepage": "https://github.com/ZackarySantana/MiscProps#readme",
+  "dependencies": {
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.26"
+  }
+}
